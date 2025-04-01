@@ -1,7 +1,5 @@
 /**
-Create a web form for person who wants to apply passport online. 
-Data Field: Firstname, Surname, Date of birth(Using Calendar)
-			Gender, Email, Password, Confirm Password, Login ID 
+* Create a web form(Applicant signup in passport website) 
 */ 
 package com.applicant.web.model; 
 
@@ -51,7 +49,8 @@ public class Person {
 	@NotNull(message = "Date of birth is required")
 	@Past(message = "Date of birth must be in the past")
 	@Column(nullable = false) 
-	private LocalDate dateOfBirth; // No need for @Temporal with LocalDate
+	// From Java 8+ @Temporal does not need to annotate with LocalDate
+	private LocalDate dateOfBirth; 
 
 	// Default Constructor
 	public Person() {
@@ -145,15 +144,11 @@ public class Person {
 
 	// toString() Method
 	@Override
-	public String toString() {
-		return "Person{" +
-				"id=" + id +
-				", firstname='" + firstname + '\'' +
-				", surname='" + surname + '\'' +
-				", gender='" + gender + '\'' +
-				", email='" + email + '\'' +
-				", loginId='" + loginId + '\'' +
-				", dateOfBirth=" + dateOfBirth +
-				'}';
+	public String toString() {  
+		
+		return String.format(
+        "Person{id=%d, firstname='%s', surname='%s', gender='%s', email='%s', loginId='%s', dateOfBirth=%tF}",
+        id, firstname, surname, gender, email, loginId, dateOfBirth
+    	); 
 	}
 }
